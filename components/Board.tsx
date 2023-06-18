@@ -6,11 +6,16 @@ import React, { useEffect } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 function Board() {
-  const getBoard = useBoardStore((state) => state.getBoard);
+  // board, getBoard정보를 두개 받고싶을때 같은 store에 있을떄 아래와 같이 접근 가능!
+  const [board, getBoard] = useBoardStore((state) => [
+    state.board,
+    state.getBoard,
+  ]);
   useEffect(() => {
     // get Board()
     getBoard();
   }, [getBoard]);
+  console.log(board);
   return (
     // <DragDropContext>
     //   <Droppable
